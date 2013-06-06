@@ -1,4 +1,4 @@
-/*  This file is part of Instant Currency Rates. Instant Currency Rates
+﻿/*  This file is part of Instant Currency Rates. Instant Currency Rates
 	is an Opera extension that lets you view updates to the latest 
 	currency exchange rates in an Opera Speed Dial. (Note: This version 
 	of the extension is for Opera - Chromium / Blink build.)
@@ -326,25 +326,41 @@ function apply() {
 		}
 	}
 	
-	/* store the changes in currency pair */
-	if (save) {		
-		widget.preferences.pairs = JSON.stringify(pairs);
-	}
-	
-	interval = parseInt(interval, 10);
+	if (localStorage) {
+		/* store the changes in currency pair */
+		if (save) {
+			if (localStorage.getItem('pairs')) {
+				localStorage.setItem('pairs', JSON.stringify(pairs));
+			} else {
+				status("Error 210: Extension preferences corrupted.")			
+			}
+		}
 
-	/* store the change in interval value */
-	if (i != interval) {
-		widget.preferences.interval = i;
-	}	
-	
-	showfor = parseInt(showfor, 10);
+		interval = parseInt(interval, 10);
 
-	/* store the change in delay value */
-	if (d != showfor) {
-		widget.preferences.showfor = d;
+		/* store the change in interval value */
+		if (i != interval) {
+			if (localStorage.getItem('interval')) {
+				localStorage.setItem('interval', i);
+			} else {
+				status("Error 211: Extension preferences corrupted.")			
+			}
+		}
+		
+		showfor = parseInt(showfor, 10);
+
+		/* store the change in delay value */
+		if (d != showfor) {
+			if (!localStorage.getItem('showfor')) {
+				localStorage.setItem('showfor', d);
+			} else {
+				status("Error 212: Extension preferences corrupted.")			
+			}
+		}	
+	} else {
+		status("Error 213: Couldn't save options.")
 	}
-	
+
 	stack = {};
 	
 	hide("set");
@@ -359,11 +375,6 @@ function apply() {
 	}
 	
 	show("set");
-	
-	if (save) {
-		/* reload dial with new settings */
-		opera.extension.bgProcess.getData();		
-	}
 	
 	$('apply').disabled = true;
 	return;
