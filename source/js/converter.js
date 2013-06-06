@@ -1,6 +1,7 @@
 /*  This file is part of Instant Currency Rates. Instant Currency Rates
 	is an Opera extension that lets you view updates to the latest 
-	currency exchange rates in an Opera Speed Dial.
+	currency exchange rates in an Opera Speed Dial. (Note: This version 
+	of the extension is for Opera - Chromium / Blink build.)
 	
     Copyright (C) 2012 - 2013 M Shabeer Ali
 
@@ -18,7 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
 	Website: http://currencyrate.tumblr.com/
-	Source code: https://github.com/thewebdev/opera-extension-icr.git 
+	Source code: https://github.com/thewebdev/opera-blink-extension-icr.git 
 	Email: thewebdev@myopera.com */
 	
 var stack = {};
