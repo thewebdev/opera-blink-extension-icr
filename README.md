@@ -1,4 +1,4 @@
-# Instant Currency Rates
+﻿# Instant Currency Rates
 
 Instant Currency Rates (ICR) is an Opera extension that lets you view the latest currency exchange rates directly in an Opera Speed Dial.  
 
