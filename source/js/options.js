@@ -22,12 +22,12 @@
 	Source code: https://github.com/thewebdev/opera-blink-extension-icr.git 
 	Email: thewebdev@myopera.com */
 	
-var pairs = widget.preferences.pairs;
-var interval = widget.preferences.interval;
-var showfor = widget.preferences.showfor;
-var max = widget.preferences.maxpairs;
-var stack = {};
+var pairs;
+var interval;
+var showfor;
+var max;
 var count;
+var stack = {};
 
 var currency = {
 	"EUR": "Euro",
@@ -560,7 +560,32 @@ function load() {
 function init() {
 	/* some basic settings intialised here */
 	
-	pairs = JSON.parse(pairs);
+	if (localStorage) {
+		if (localStorage.getItem('pairs')) {
+			pairs = localStorage.getItem('pairs');
+			pairs = JSON.parse(pairs);
+		}
+		
+		count = pairs.length;
+		
+		if (localStorage.getItem('interval')) {
+			interval = localStorage.getItem('interval')
+			interval = parseInt(interval, 10);
+		}
+		
+		if (localStorage.getItem('showfor')) {
+			showfor = localStorage.getItem('showfor')
+			showfor = parseInt(showfor, 10);
+		}
+
+		if (localStorage.getItem('maxpairs')) {
+			max = localStorage.getItem('maxpairs');
+			max = parseInt(max, 10);
+		}
+	} else {
+		status("Error 201: Couldn't load default values.");
+	}
+	
 	count = pairs.length;
 	interval = parseInt(interval, 10);
 	
