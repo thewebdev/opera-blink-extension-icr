@@ -1,0 +1,36 @@
+﻿{
+	"name": "Instant Currency Rates",
+	"version": "1.7",
+	"manifest_version": 2,	
+	"description": "Get updates to the latest currency exchange rate in an Opera Speed Dial.",
+	"developer": {
+		"name": "M Shabeer Ali",
+		"url": ""
+	},
+	"icons": {
+		"128": "pix/icon-128.png"
+	},
+	"speeddial": {
+		"title": "Instant Currency Rates",
+		"url": "http://finance.yahoo.com/currency-investing"
+	},	
+	"background": {
+		"page": "index.html"
+	},
+	"options_page": "options.html",
+	"web_accessible_resources": [
+	 "COPYING",
+	 "converter.html",
+	 "css/options.css",
+	 "css/style.css",
+	 "js/background.js",
+	 "js/converter.js",
+	 "js/options.js",
+	 "pix/icon-128.png",
+	 "pix/icon-64.png",
+	 "pix/loading.gif",
+	 "pix/swap.png"
+	],
+	"permissions": ["speeddial", "http://finance.yahoo.com/*", "storage"],
+	"content_security_policy": "script-src 'self'; object-src 'self';"
+}
