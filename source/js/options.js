@@ -254,7 +254,7 @@ function swap() {
 		$('second').selectedIndex = first;
 	} else {
 		/* alert the user */
-		status("Warning: Both currency are the same.")
+		status("Note: Both currency are the same.")
 	}
 	return;
 }
@@ -273,7 +273,7 @@ function apply() {
 
 	if (!i) { 
 		/* Validation - interval should be a number */
-		status("Error: Update interval should be a number");
+		status("Error 206: Update interval should be a number");
 		return;
 	} else {
 		document.input.interval.value = i;
@@ -281,7 +281,7 @@ function apply() {
 	
 	if (i < 15) {
 		/* Validation - interval cannot be less than 15 */
-		status("Error: Update interval should be more than 15 minutes.");
+		status("Error 207: Update interval should be over 15 minutes.");
 		return;			
 	}
 	
@@ -290,7 +290,7 @@ function apply() {
 	
 	if ((!d) && (d != 0)) { 
 		/* Validation - delay should be a number */
-		status("Error: Display delay should be a number");
+		status("Error 208: Display delay should be a number");
 		return;
 	} else {
 		document.input.delay.value = d;
@@ -298,7 +298,7 @@ function apply() {
 	
 	if (d <= 0) {
 		/* Validation - delay cannot be less than 1 */
-		status("Error: Display delay can't be less than 1 second.");
+		status("Error 209: Display delay should be over 1 second.");
 		return;			
 	}	
 	
@@ -417,7 +417,7 @@ function addPair() {
 	
 	if (count == max) {
 		/* validation - 5+ pair not allowed */
-		status("Error: Maximum limit of " + max + " pairs reached.");
+		status("Error 202: Limit of " + max + " pairs reached.");
 		return;	
 	}
 	
@@ -426,7 +426,7 @@ function addPair() {
 	
 	if (first === second) {
 		/* Validation - source / target currrency can't be same */
-		status("Error: Same currency selected.");
+		status("Error 203: Same currency selected.");
 		return;
 	}
 		
@@ -440,7 +440,7 @@ function addPair() {
 		   the user wants to add or remove. */
 		   
 		if (stack[id] == 'add') {
-			status('Error: Duplicate pair not added - ' + id);
+			status('Error 204: ' + id + ' already in list.');
 			return;
 		}
 	}
@@ -452,7 +452,7 @@ function addPair() {
 		   removal. */
 		   
 		if (!(stack[id] == 'remove')) {
-			status('Error: Duplicate pair not added - ' + id);
+			status('Error 205: ' + id + ' already in list.');
 			return;
 		}
 	}
@@ -585,9 +585,6 @@ function init() {
 	} else {
 		status("Error 201: Couldn't load default values.");
 	}
-	
-	count = pairs.length;
-	interval = parseInt(interval, 10);
 	
 	/* disable save button on start */
 	$('apply').disabled = true;
