@@ -351,7 +351,7 @@ function apply() {
 
 		/* store the change in delay value */
 		if (d != showfor) {
-			if (!localStorage.getItem('showfor')) {
+			if (localStorage.getItem('showfor')) {
 				localStorage.setItem('showfor', d);
 			} else {
 				status("Error 212: Extension preferences corrupted.")			

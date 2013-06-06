@@ -377,7 +377,7 @@ function refDial(cmd, out) {
 		/* indicate some error
 		   has occured */
 		
-		$("msg").firstChild.nodeValue = "Error 101: Couldn't load / save default values.";
+		$("msg").firstChild.nodeValue = "Error 101: Couldn't initialize default values.";
 		
 		clearInterval(slider);	
 		hide("data");
