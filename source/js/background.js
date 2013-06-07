@@ -501,7 +501,9 @@ function setDisplayTimer() {
 function init() {
 	/* some basic settings intialised here
 	   to get the extension running */
-	   
+	
+	var temp;
+	
 	if (localStorage) {
 		/* 	Default settings 
 		
@@ -520,8 +522,8 @@ function init() {
 			extension again. */
 			
 		if (!localStorage.getItem('pairs')) {
-			var c = ["USD/EUR"];
-			localStorage.setItem('pairs', JSON.stringify(c));
+			temp = ["USD/EUR"];
+			localStorage.setItem('pairs', JSON.stringify(temp));
 		}
 		
 		/* 	2. INTERVAL
@@ -566,6 +568,18 @@ function init() {
 		if (!localStorage.getItem('roundoff')) {
 			localStorage.setItem('roundoff', '3');
 		}
+		
+		/* 	6. CONVTO
+			Used in the currency converter module.
+			Stores the currencies specified by
+			user for conversion. (JSON array).
+			
+			Default: ""
+			User Customizable: YES */		
+		if (!localStorage.getItem('convto')) {
+			temp = [];
+			localStorage.setItem('convto', JSON.stringify(temp));
+		}		
 
 		getData();
 	} else {
