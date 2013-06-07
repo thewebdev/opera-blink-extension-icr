@@ -530,7 +530,7 @@ function load() {
 	    link so that the user can delete a
 		currency pair. Note: Clicking delete
 		does not delete the currency pair 
-		from widget preferences immediately. */
+		from localStorage immediately. */
 		
 		li = E("li");
 		
@@ -595,6 +595,7 @@ function init() {
 		}
 	} else {
 		status("Error 201: Couldn't load default values.");
+		return;
 	}
 	
 	/* disable save button on start */
