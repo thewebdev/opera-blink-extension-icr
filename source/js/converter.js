@@ -23,6 +23,7 @@
 	Email: thewebdev@myopera.com */
 	
 var stack = {};
+var convto;
 var count;
 
 var currency = {
@@ -309,25 +310,45 @@ function apply() {
 	/* Saves the changes; does
 	   some validation too. */
 	   
-	var val, ul, li;
+	var val, ul, li, temp;
+	var save = false;
 	
-	/* save / delete list nodes by id */
+	console.log("Stack: " + stack);
+	console.log("Before: " + convto);
+	
 	for (var id in stack) {
+	
+		temp = convto.indexOf(id);
+		
+		/* 	Validation: check if currency is 
+			already saved in localStorage 
+			using the 'convto' array*/
+		   
 		if (stack[id][0] == 'add'){
-			val = stack[id][1];
-			if (localStorage) {
-				localStorage.setItem(id, val);
-			} else {
-				status("Error: Unable to save.");
-			}
+			if (temp != -1) {
+				stack[id][0] = 'nochange';
+			} else {		
+				convto[convto.length] = id;
+				save = true;
+			}				
 		}
 		
 		if (stack[id][0] == 'remove') {
-			if (localStorage.getItem(id)) {
-				localStorage.removeItem(id);
-			}
+			if (temp != -1) {
+				convto.splice(temp, 1);				
+				save = true;
+			}	
 		}
 	}
+	
+	console.log("After: " + convto);
+	/* save the changes in currency pair */
+	if (save) {
+		localStorage.setItem('convto', JSON.stringify(convto));
+	} 
+		
+	first = document.input.first.value;
+	localStorage.setItem('first', first);
 	
 	/* reset stack */
 	stack = {};
@@ -344,14 +365,6 @@ function apply() {
 	}
 	
 	show("set");
-	
-	/* save first currency in 
-	   widget preferences rather
-	   than localstorage as it 
-	   makes the code less complex */
-	   
-	first = document.input.first.value;
-	widget.preferences.first = first;
 	
 	$('apply').disabled = true;
 	return;
@@ -421,7 +434,7 @@ function add() {
 	
 	if ((!amount) && (amount !== 0)) { 
 		/* Validation - should be a number */
-		status("Error: Enter a number as currency value.");
+		status("Error 303: Enter a number as currency value.");
 		return;
 	} else {
 		document.input.money.value = amount;
@@ -429,13 +442,13 @@ function add() {
 	
 	if (amount <= 0) {
 		/* Validation - amount cannot be less than 1 */
-		status("Error: Enter a number greater than 0.");
+		status("Error 304: Enter a number greater than 0.");
 		return;			
 	}	
 	
 	if (first === second) {
 		/* Validation - source / target currrency can't be same */
-		status("Error: Same currency selected.");
+		status("Error 305: Same currency selected.");
 		return;
 	}
 		
@@ -448,7 +461,7 @@ function add() {
 		   The stack holds the currency that 
 		   the user wants to add or remove. */ 
 		if (stack[id][0] == 'add') {
-			status('Error: ' + id + ' already added to list.');
+			status('Error 306: ' + id + ' already added to list.');
 			return;
 		}
 	}
@@ -485,11 +498,13 @@ function add() {
 }
 
 function convert(amount, first, second) {
-	/* code reuse - refer to background.js */
+	/*  code reuse - we call some functions
+		that are in background.js using 
+		the extension api. */
 	
 	var rates, value;
 	
-	rates = opera.extension.bgProcess.getRates();
+	rates = chrome.extension.getBackgroundPage().getRates();
 	
 	if (rates) {
 		if (first == "USD") {
@@ -502,10 +517,10 @@ function convert(amount, first, second) {
 			value =  amount * (rates[second][0]/rates[first][0]);
 		}
 		
-		value = opera.extension.bgProcess.trueRound(value);
+		value = chrome.extension.getBackgroundPage().trueRound(value);
 		return value;
 	} else {
-		status("Error: Couldn't get latest currency rates update.");
+		status("Error 302: Couldn't get the latest currency rates.");
 	}
 }
 
@@ -521,8 +536,8 @@ function load() {
 	
 	hide("set");
 	
-	if (widget.preferences.first) {
-		first = widget.preferences.first;
+	if (localStorage.getItem('conv.first')) {
+		first = localStorage.getItem('conv.first');
 	} else {
 		first = document.input.first.value;
 	}
@@ -534,37 +549,36 @@ function load() {
 	/* Creates a ul list to display 
 	   the saved currencies */
 	
-	if (localStorage) {
-		if (localStorage.length) {   
-			for (var i = 0; i < count; i++) {
-			/*  Each list element also has a delete
-				link so that the user can delete a
-				currency. Note: Clicking delete
-				does not delete it immediately. */
-				
-				key = localStorage.key(i);
-				val = String(localStorage.getItem(key));
-				
-				li = E("li");
-				li.setAttribute('id', key);
-				
-				a = E("a");
-				a.setAttribute('href', '#self' + i);
-				txt = Txt('delete');
-				a.appendChild(txt);
-				a.addEventListener('click', remove, false);
-				
-				temp = convert(amount, first, key);
-				temp = temp + ' ' + val;
-				
-				txt = Txt(temp);				
-				li.appendChild(a);
-				li.appendChild(txt);
-				
-				inHtml.appendChild(li);
-			}
+	if (count) {   
+		for (var i = 0; i < count; i++) {
+		/*  Each list element also has a delete
+			link so that the user can delete a
+			currency. Note: Clicking delete
+			does not delete it immediately. */
+			
+			key = convto[i];
+			val = currency[key];
+			
+			li = E("li");
+			li.setAttribute('id', key);
+			
+			a = E("a");
+			a.setAttribute('href', '#self' + i);
+			txt = Txt('delete');
+			a.appendChild(txt);
+			a.addEventListener('click', remove, false);
+			
+			temp = convert(amount, first, key);
+			temp = temp + ' ' + val;
+			
+			txt = Txt(temp);				
+			li.appendChild(a);
+			li.appendChild(txt);
+			
+			inHtml.appendChild(li);
 		}
 	}
+
 
 	$("set").appendChild(inHtml);
 	show("set");
@@ -574,9 +588,15 @@ function init() {
 	/* some basic settings intialised here */
 	
 	if (localStorage) {
-		if (localStorage.length) {
-			count = localStorage.length;
+		if (localStorage.getItem('convto')) {
+			convto = localStorage.getItem('convto');
+			convto = JSON.parse(convto);
 		}
+		
+		count = convto.length;
+	} else {
+		status("Error 301: Couldn't load default values.");
+		return;
 	}
 	
 	/* disable save button on start */
