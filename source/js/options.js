@@ -607,8 +607,8 @@ function init() {
 	$('swap').addEventListener('click', swap, false);
 	
 	/* monitor textbox for key strokes */
-	$('interval').addEventListener('keypress', unlock ,false);
-	$('delay').addEventListener('keypress', unlock ,false);
+	$('interval').addEventListener('change', unlock ,false);
+	$('delay').addEventListener('change', unlock ,false);
 	
 	/* to catch form reload on ENTER key press */
 	$('input').addEventListener('submit', submit, false);	
