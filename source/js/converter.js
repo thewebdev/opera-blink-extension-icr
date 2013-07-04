@@ -609,7 +609,7 @@ function init() {
 	$('swap').addEventListener('click', swap, false);
 	
 	/* monitor data entry */
-	$('money').addEventListener('keyup', rateUpdate, false);
+	$('money').addEventListener('change', rateUpdate, false);
 	
 	/* to catch form reload on ENTER key press */
 	$('input').addEventListener('submit', submit, false);	
