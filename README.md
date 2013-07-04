@@ -34,6 +34,6 @@ The source code of the extension is available for free and is released under the
 
 ## Changelog  
 
-*Version 2 -
-New: Supports Opera 15 (Chromium / Blink build). 
+*Version 2 -  
+New: Supports Opera 15 (Chromium / Blink build).  
 Upd: Redesigned Preferences as an HTML 5 app.
