@@ -34,6 +34,9 @@ The source code of the extension is available for free and is released under the
 
 ## Changelog  
 
-*Version 2 -  
+*Version 2.1 -  
+Updated: Currency list - added RSD; removed EEK, ECS.  
+
+*Version 2.0 -  
 New: Supports Opera 15 (Chromium / Blink build).  
 Upd: Redesigned Preferences as an HTML 5 app.
