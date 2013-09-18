@@ -32,8 +32,15 @@ Though not necessarily noticeable, Instant Currency Rates obtains data faster fr
 7. **Modify at Will**  
 The source code of the extension is available for free and is released under the open source GPL 3 license.
 
+## Known Issue(s)  
+
+Currency list is not updated automatically and may include currrencies that are no longer in circulation. When such currencies are added, the extension hangs and will only display "updating" in the Speed Dial. Temporary solution: Remove the currency pair from preferences / options.
+
 ## Changelog  
 
-*Version 2 -  
+*Version 2.1 -*    
+Updated: Currency list - added RSD; removed EEK, ECS.  
+
+*Version 2.0 -*    
 New: Supports Opera 15 (Chromium / Blink build).  
 Upd: Redesigned Preferences as an HTML 5 app.
