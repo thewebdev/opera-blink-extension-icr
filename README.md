@@ -7,7 +7,7 @@ Note: This version of the extension is for Opera - Chromium / Blink build.
 	Download: https://addons.opera.com/en/extensions/details/instant-currency-rates/
 	Website: http://currencyrate.tumblr.com/
 	Source: https://github.com/thewebdev/opera-blink-extension-icr.git
-	Email: thewebdev@myopera.com
+	Email: thewebdev@yandex.com
 
 ## Features
 
@@ -21,7 +21,7 @@ Instant Currency Rates visually indicates the strength or weakness of the curren
 Use the currency converter to compare the conversion rate between multiple currencies simultaneously.
 
 4. **Choose from 150+ Currencies**  
-You can select currency pairs from any of the 153 currencies currently in use in the world. 
+You can select currency pairs from any of the 154 currencies currently in use in the world. 
 
 5. **Customisable**  
 Add and remove currency pairs easily. Modify the update interval to regulate automatic update. Change the display delay to adjust the time each pair is displayed.
@@ -37,6 +37,10 @@ The source code of the extension is available for free and is released under the
 Currency list is not updated automatically and may include currrencies that are no longer in circulation. When such currencies are added, the extension hangs and will only display "updating" in the Speed Dial. Temporary solution: Remove the currency pair from preferences / options.
 
 ## Changelog  
+
+*Version 15.10 -*  
+New: Revised versioning scheme   
+Updated: Added AZN to currency list.  
 
 *Version 2.1 -*    
 Updated: Currency list - added RSD; removed EEK, ECS.  

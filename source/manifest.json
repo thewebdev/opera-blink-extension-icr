@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Instant Currency Rates",
-	"version": "2.1",
+	"version": "15.10",
 	"manifest_version": 2,	
 	"description": "Get updates to the latest currency exchange rate in an Opera Speed Dial.",
 	"developer": {

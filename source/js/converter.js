@@ -3,7 +3,7 @@
 	currency exchange rates in an Opera Speed Dial. (Note: This version 
 	of the extension is for Opera - Chromium / Blink build.)
 	
-    Copyright (C) 2012 - 2013 M Shabeer Ali
+    Copyright (C) 2012 - 2014 M Shabeer Ali
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 	
 	Website: http://currencyrate.tumblr.com/
 	Source code: https://github.com/thewebdev/opera-blink-extension-icr.git 
-	Email: thewebdev@myopera.com */
+	Email: thewebdev@yandex.com */
 	
 var stack = {};
 var convto;
@@ -44,6 +44,7 @@ var currency = {
 	"XAL": "Aluminium Ounces",
 	"ARS": "Argentine Peso",
 	"AWG": "Aruba Florin",
+	"AZN": "Azerbaijani New Manat",	
 	"BSD": "Bahamian Dollar",
 	"BHD": "Bahraini Dinar",
 	"BDT": "Bangladesh Taka",
