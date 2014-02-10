@@ -47,6 +47,7 @@ var currency = {
 	"XAL": "Aluminium Ounces",
 	"ARS": "Argentine Peso",
 	"AWG": "Aruba Florin",
+	"AZN": "Azerbaijani New Manat",	
 	"BSD": "Bahamian Dollar",
 	"BHD": "Bahraini Dinar",
 	"BDT": "Bangladesh Taka",
